@@ -24,10 +24,16 @@ pipeline {
             }
         }
 
-		// include one stage which using Jacoco generates code coverage report
-        stage('Test with JaCoCo') {
+        stage('Test') {
             steps {
-                bat 'mvn test jacoco:report'
+                bat 'mvn test'
+            }
+        }
+
+		// include one stage which using Jacoco generates code coverage report
+        stage('Generate Code Coverage') {
+            steps {
+                bat 'mvn jacoco:prepare-agent test jacoco:report'
             }
 
             post {
