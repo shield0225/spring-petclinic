@@ -27,7 +27,6 @@ pipeline {
 		// include one stage which using Jacoco generates code coverage report
         stage('Test with JaCoCo') {
             steps {
-                tool 'Maven'
                 bat 'mvn test jacoco:report'
             }
 
