@@ -3,7 +3,7 @@ pipeline {
     
 	// should be triggered every 10 minutes on Thursdays
     triggers {
-        cron('H/10 * * * 1')
+        cron('H/10 * * * 4')
     }
 
     tools {
@@ -11,9 +11,15 @@ pipeline {
     }
 
     stages {
+
+    	stage('Checkout') {
+            steps {
+				git branch: 'main', url: 'https://github.com/shield0225/spring-petclinic.git'
+            	}
+        	}
+
         stage('Build') {
             steps {
-                tool 'Maven'
                 bat 'mvn clean package'
             }
         }
